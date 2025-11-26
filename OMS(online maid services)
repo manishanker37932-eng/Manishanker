@@ -1,0 +1,622 @@
+<!-- Example of a "Book Now" button on your website -->
+<button onclick="bookMaid()">Book Now</button>
+
+<script>
+    function bookMaid() {
+        const bookingDetails = {
+            maidId: 1,
+            customerName: "Mr. Smith",
+            // ... other details like time, date
+        };
+
+        // JavaScript makes a network request to the Java backend API
+        fetch('/api/bookings/book', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingDetails),
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Shows "Booking confirmed!" or "Booking failed..."
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/bookings")
+public class BookingController {
+
+    @Autowired
+    private BookingService bookingService; // Service class handles the logic
+
+    @GetMapping("/available-maids")
+    public List<Maid> getAvailableMaids() {
+        // Logic to fetch available maids from the database via the service
+        return bookingService.findAvailableMaids();
+    }
+
+    @PostMapping("/book")
+    public String createBooking(@RequestBody BookingRequest bookingRequest) {
+        // Logic to process the booking request, check availability, calculate price, and save to DB
+        boolean success = bookingService.processBooking(bookingRequest);
+        if (success) {
+            return "Booking confirmed!";
+        } else {
+            return "Booking failed, maid unavailable.";
+        }
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptops & Mobile Services E-Commerce</title>
+    <!-- You would link your CSS file here: -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+
+    <header>
+        <h1>TechStore</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/laptops">Laptops</a>
+            <a href="/mobiles">Mobiles</a>
+            <a href="/services">Services</a>
+            <a href="/cart">Cart</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Laptop & Mobile Selection</h2>
+
+        <!-- Example Product Card (Laptop) -->
+        <div class="product-card">
+            <img src="laptop-image.jpg" alt="Laptop Model X">
+            <h3>Laptop Model X</h3>
+            <p>Powerful laptop with 16GB RAM and SSD storage.</p>
+            <span class="price">$999.99</span>
+            <button>Add to Cart</button>
+        </div>
+
+        <!-- Example Product Card (Mobile Service/Repair) -->
+        <div class="product-card">
+            <img src="service-image.jpg" alt="Phone Repair Service">
+            <h3>Mobile Screen Repair Service</h3>
+            <p>Professional screen replacement for most major brands.</p>
+            <span class="price">$149.00</span>
+            <button>Schedule Service</button>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechStore. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<parent>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-parent</artifactId>
+<version>2.7.7</version>
+<relativePath/>
+<!--  lookup parent from repository  -->
+</parent>
+<groupId>com.ts</groupId>
+<artifactId>Employee</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<name>Employee</name>
+<description>AngularSpringBootIntegration</description>
+<properties>
+<java.version>1.8</java.version>
+</properties>
+<dependencies>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+<groupId>com.mysql</groupId>
+<artifactId>mysql-connector-j</artifactId>
+<scope>runtime</scope>
+</dependency>
+<!--  https://mvnrepository.com/artifact/mysql/mysql-connector-java  -->
+<dependency>
+<groupId>mysql</groupId>
+<artifactId>mysql-connector-java</artifactId>
+<version>8.0.20</version>
+</dependency>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-test</artifactId>
+<scope>test</scope>
+</dependency>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
+</dependencies>
+<build>
+<plugins>
+<plugin>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-maven-plugin</artifactId>
+</plugin>
+</plugins>
+</build>
+</project>https://github.com/manishanker37931-engimport org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/bookings")
+public class BookingController {
+
+    @Autowired
+    private BookingService bookingService; // Service class handles the logic
+
+    @GetMapping("/available-maids")
+    public List<Maid> getAvailableMaids() {
+        // Logic to fetch available maids from the database via the service
+        return bookingService.findAvailableMaids();
+    }
+
+    @PostMapping("/book")
+    public String createBooking(@RequestBody BookingRequest bookingRequest) {
+        // Logic to process the booking request, check availability, calculate price, and save to DB
+        boolean success = bookingService.processBooking(bookingRequest);
+        if (success) {
+            return "Booking confirmed!";
+        } else {
+            return "Booking failed, maid unavailable.";
+        }
+    }
+}
+forgot credentials for previous projects uploaded old projects in new mail and github account thanks you!!!<!-- Example of a "Book Now" button on your website -->
+<button onclick="bookMaid()">Book Now</button>
+
+<script>
+    function bookMaid() {
+        const bookingDetails = {
+            maidId: 1,
+            customerName: "Mr. Smith",
+            // ... other details like time, date
+        };
+
+        // JavaScript makes a network request to the Java backend API
+        fetch('/api/bookings/book', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingDetails),
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Shows "Booking confirmed!" or "Booking failed..."
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptops & Mobile Services E-Commerce</title>
+    <!-- You would link your CSS file here: -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+
+    <header>
+        <h1>TechStore</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/laptops">Laptops</a>
+            <a href="/mobiles">Mobiles</a>
+            <a href="/services">Services</a>
+            <a href="/cart">Cart</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Laptop & Mobile Selection</h2>
+
+        <!-- Example Product Card (Laptop) -->
+        <div class="product-card">
+            <img src="laptop-image.jpg" alt="Laptop Model X">
+            <h3>Laptop Model X</h3>
+            <p>Powerful laptop with 16GB RAM and SSD storage.</p>
+            <span class="price">$999.99</span>
+            <button>Add to Cart</button>
+        </div>
+
+        <!-- Example Product Card (Mobile Service/Repair) -->
+        <div class="product-card">
+            <img src="service-image.jpg" alt="Phone Repair Service">
+            <h3>Mobile Screen Repair Service</h3>
+            <p>Professional screen replacement for most major brands.</p>
+            <span class="price">$149.00</span>
+            <button>Schedule Service</button>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechStore. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptops & Mobile Services E-Commerce</title>
+    <!-- You would link your CSS file here: -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+
+    <header>
+        <h1>TechStore</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/laptops">Laptops</a>
+            <a href="/mobiles">Mobiles</a>
+            <a href="/services">Services</a>
+            <a href="/cart">Cart</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Laptop & Mobile Selection</h2>
+
+        <!-- Example Product Card (Laptop) -->
+        <div class="product-card">
+            <img src="laptop-image.jpg" alt="Laptop Model X">
+            <h3>Laptop Model X</h3>
+            <p>Powerful laptop with 16GB RAM and SSD storage.</p>
+            <span class="price">$999.99</span>
+            <button>Add to Cart</button>
+        </div>
+
+        <!-- Example Product Card (Mobile Service/Repair) -->
+        <div class="product-card">
+            <img src="service-image.jpg" alt="Phone Repair Service">
+            <h3>Mobile Screen Repair Service</h3>
+            <p>Professional screen replacement for most major brands.</p>
+            <span class="price">$149.00</span>
+            <button>Schedule Service</button>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechStore. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+<!-- Example of a "Book Now" button on your website -->
+<button onclick="bookMaid()">Book Now</button>
+
+<script>
+    function bookMaid() {
+        const bookingDetails = {
+            maidId: 1,
+            customerName: "Mr. Smith",
+            // ... other details like time, date
+        };
+
+        // JavaScript makes a network request to the Java backend API
+        fetch('/api/bookings/book', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingDetails),
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Shows "Booking confirmed!" or "Booking failed..."
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+forgot credentials for previous projects uploaded old projects in new mail and github account thanks you!!!import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/bookings")
+public class BookingController {
+
+    @Autowired
+    private BookingService bookingService; // Service class handles the logic
+
+    @GetMapping("/available-maids")
+    public List<Maid> getAvailableMaids() {
+        // Logic to fetch available maids from the database via the service
+        return bookingService.findAvailableMaids();
+    }
+
+    @PostMapping("/book")
+    public String createBooking(@RequestBody BookingRequest bookingRequest) {
+        // Logic to process the booking request, check availability, calculate price, and save to DB
+        boolean success = bookingService.processBooking(bookingRequest);
+        if (success) {
+            return "Booking confirmed!";
+        } else {
+            return "Booking failed, maid unavailable.";
+        }
+    }
+}
+<!-- Example of a "Book Now" button on your website -->
+<button onclick="bookMaid()">Book Now</button>
+
+<script>
+    function bookMaid() {
+        const bookingDetails = {
+            maidId: 1,
+            customerName: "Mr. Smith",
+            // ... other details like time, date
+        };
+
+        // JavaScript makes a network request to the Java backend API
+        fetch('/api/bookings/book', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingDetails),
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Shows "Booking confirmed!" or "Booking failed..."
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptops & Mobile Services E-Commerce</title>
+    <!-- You would link your CSS file here: -->
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+</head>
+<body>
+
+    <header>
+        <h1>TechStore</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/laptops">Laptops</a>
+            <a href="/mobiles">Mobiles</a>
+            <a href="/services">Services</a>
+            <a href="/cart">Cart</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Laptop & Mobile Selection</h2>
+
+        <!-- Example Product Card (Laptop) -->
+        <div class="product-card">
+            <img src="laptop-image.jpg" alt="Laptop Model X">
+            <h3>Laptop Model X</h3>
+            <p>Powerful laptop with 16GB RAM and SSD storage.</p>
+            <span class="price">$999.99</span>
+            <button>Add to Cart</button>
+        </div>
+
+        <!-- Example Product Card (Mobile Service/Repair) -->
+        <div class="product-card">
+            <img src="service-image.jpg" alt="Phone Repair Service">
+            <h3>Mobile Screen Repair Service</h3>
+            <p>Professional screen replacement for most major brands.</p>
+            <span class="price">$149.00</span>
+            <button>Schedule Service</button>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 TechStore. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/bookings")
+public class BookingController {
+
+    @Autowired
+    private BookingService bookingService; // Service class handles the logic
+
+    @GetMapping("/available-maids")
+    public List<Maid> getAvailableMaids() {
+        // Logic to fetch available maids from the database via the service
+        return bookingService.findAvailableMaids();
+    }
+
+    @PostMapping("/book")
+    public String createBooking(@RequestBody BookingRequest bookingRequest) {
+        // Logic to process the booking request, check availability, calculate price, and save to DB
+        boolean success = bookingService.processBooking(bookingRequest);
+        if (success) {
+            return "Booking confirmed!";
+        } else {
+            return "Booking failed, maid unavailable.";
+        }
+    }
+}
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<modelVersion>4.0.0</modelVersion>
+<parent>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-parent</artifactId>
+<version>2.7.7</version>
+<relativePath/>
+<!--  lookup parent from repository  -->
+</parent>
+<groupId>com.ts</groupId>
+<artifactId>Employee</artifactId>
+<version>0.0.1-SNAPSHOT</version>
+<name>Employee</name>
+<description>AngularSpringBootIntegration</description>
+<properties>
+<java.version>1.8</java.version>
+</properties>
+<dependencies>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+<groupId>com.mysql</groupId>
+<artifactId>mysql-connector-j</artifactId>
+<scope>runtime</scope>
+</dependency>
+<!--  https://mvnrepository.com/artifact/mysql/mysql-connector-java  -->
+<dependency>
+<groupId>mysql</groupId>
+<artifactId>mysql-connector-java</artifactId>
+<version>8.0.20</version>
+</dependency>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-test</artifactId>
+<scope>test</scope>
+</dependency>
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-mail</artifactId>
+</dependency>
+</dependencies>
+<build>
+<plugins>
+<plugin>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-maven-plugin</artifactId>
+</plugin>
+</plugins>
+</build>
+</project>https://github.com/manojpainam/project.gitimport org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/bookings")
+public class BookingController {
+
+    @Autowired
+    private BookingService bookingService; // Service class handles the logic
+
+    @GetMapping("/available-maids")
+    public List<Maid> getAvailableMaids() {
+        // Logic to fetch available maids from the database via the service
+        return bookingService.findAvailableMaids();
+    }
+
+    @PostMapping("/book")
+    public String createBooking(@RequestBody BookingRequest bookingRequest) {
+        // Logic to process the booking request, check availability, calculate price, and save to DB
+        boolean success = bookingService.processBooking(bookingRequest);
+        if (success) {
+            return "Booking confirmed!";
+        } else {
+            return "Booking failed, maid unavailable.";
+        }
+    }
+}
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/bookings")
+public class BookingController {
+
+    @Autowired
+    private BookingService bookingService; // Service class handles the logic
+
+    @GetMapping("/available-maids")
+    public List<Maid> getAvailableMaids() {
+        // Logic to fetch available maids from the database via the service
+        return bookingService.findAvailableMaids();
+    }
+
+    @PostMapping("/book")
+    public String createBooking(@RequestBody BookingRequest bookingRequest) {
+        // Logic to process the booking request, check availability, calculate price, and save to DB
+        boolean success = bookingService.processBooking(bookingRequest);
+        if (success) {
+            return "Booking confirmed!";
+        } else {
+            return "Booking failed, maid unavailable.";
+        }
+    }
+}
+<!-- Example of a "Book Now" button on your website -->
+<button onclick="bookMaid()">Book Now</button>
+
+<script>
+    function bookMaid() {
+        const bookingDetails = {
+            maidId: 1,
+            customerName: "Mr. Smith",
+            // ... other details like time, date
+        };
+
+        // JavaScript makes a network request to the Java backend API
+        fetch('/api/bookings/book', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingDetails),
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Shows "Booking confirmed!" or "Booking failed..."
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+</script>
